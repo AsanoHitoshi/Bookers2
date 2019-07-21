@@ -1,0 +1,13 @@
+<div class="content">
+	<%if flash[:notice]%>
+		<div class="flash">
+			<%= flash[:notice] %>
+		</div>
+	<%end%>
+	<h1>welcome to Bookers	!!</h1>
+	<h2>In Bookers</h2><span></span>
+	<h2>you can share and exchage your opinions , inpressions , and emotions<br>
+	about various books!</h2>
+	<p><%= link_to 'Log_in', new_user_session_path, class:"btn btn-default" %></p>
+	<p><%= link_to 'Sign_up', new_user_registration_path, class:"btn btn-default" %></p>
+</div>

@@ -1,0 +1,36 @@
+<!-- 共通部分　サイドバー-->
+<div class="users_index">
+<%if flash[:notice]%>
+	<div class="flash">
+		<%= flash[:notice] %>
+	</div>
+<%end%>
+<% book_user = User.find(@book.user_id) %>
+<%= render 'books/list',user: book_user,book: @newbook %>
+<div class="col-lg-8">
+	<div class="Book_detail">
+		<h3>Book detail</h3>
+		<table class="table table-striped">
+				<tbody>
+					<td>
+						<% if book_user.profile_image.present? %>
+							<%=attachment_image_tag  book_user, :profile_image%>
+						<%else%>
+							<img src='noimage.jpg'>
+						<%end%>
+						<br><%= link_to user_path(book_user) do book_user.name end %>
+					</td>
+					<td>
+						<%= link_to book_path(@book) do @book.title  end%>
+					</td>
+					<td>
+						<%=@book.body%>
+					</td>
+					<% if current_user.id == @book.user_id %>
+						<td><%=link_to edit_book_path(@book) do%>edit<%end%></td>
+						<td><%=link_to book_path(@book), method: :delete do%>delete<%end%></td>
+					<% end %>
+				</tbody>
+		</table>
+	</div>
+</div>
