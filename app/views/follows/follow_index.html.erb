@@ -1,0 +1,28 @@
+	<div class="col-lg-8">
+		<h3>Following Users</h3>
+		<table class="table table-striped">
+				<thead>
+					<th>image</th>
+					<th>name</th>
+					<th></th>
+				</thead>
+			<% @follows.each do |follow| %>
+			<%user = User.find(follow.follow_id)%>
+				<tbody>
+					<% if user.profile_image.present? %>
+						<td><%=attachment_image_tag  user, :profile_image%></td>
+					<%else%>
+						<td><img src='noimage.jpg'></td>
+					<%end%>
+					<td>
+						<%=link_to user_path(user.id) do %>
+						<%=user.name%>
+						<%end%>
+					</td>
+					<td>
+						<%=link_to user_path(user.id) do %>Show<%end%>
+					</td>
+				</tbody>
+			<% end %>
+		</table>
+	</div>

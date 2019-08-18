@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_064454) do
+ActiveRecord::Schema.define(version: 2019_08_18_031929) do
+
+  create_table "book_comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "book_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -18,6 +26,20 @@ ActiveRecord::Schema.define(version: 2019_07_21_064454) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "follow_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,6 +54,8 @@ ActiveRecord::Schema.define(version: 2019_07_21_064454) do
     t.string "introduction"
     t.text "profile_image_id"
     t.string "password"
+    t.string "uid"
+    t.string "provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

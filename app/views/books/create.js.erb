@@ -1,0 +1,15 @@
+
+$(function() {
+  $(document).on('click', 'input[type=submit]', function() {
+    if ($('input[type=text]').val() == '') {
+      return false;
+    }
+  })
+  $(document).on('ajax:success', 'form', function(e) {
+    $('#book_title').val('');
+    $('#book_body').val('');
+    console.log(e);
+     $('.books_index').html("<%= escape_javascript(render partial: 'books/book_list', locals: {books: @books}) %>");
+	})
+
+})

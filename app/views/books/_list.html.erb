@@ -21,7 +21,7 @@
 			</div>
 			<div class="newbook">
 				<h3>New book</h3>
-				<%= form_for(book) do |f|%>
+				<%= form_with model: book do |f|%>
 					<p>title</p>
 					<%= f.text_field :title %>
 					<p>opinion</p>
@@ -29,6 +29,28 @@
 					<p></p>
 					<%= f.submit "Create Book" ,class:"btn btn-default"%>
 				<%end%>
+			</div>
+			<div class="follow">
+				<h3>Follow</h3>
+				<p>
+					フォロー：
+ 					<%=link_to user_follows_follow_index_path(user.id) do%>
+						<%=user.follows.count%>
+					<%end%>
+					<%followers=Follow.where(follow_id: user.id)%>
+					フォロワー：
+					<%=link_to user_follows_follower_index_path(user.id) do%>
+						<%=followers.count%>
+					<%end%>
+				</p>
+				<p>
+					<%=link_to 'フォローする',new_user_follows_path(user.id)%>
+				</p>
+				<p>
+					<%=link_to user_follows_path(user.id), method: :delete do%>
+						フォローしない
+					<%end%>
+				</p>
 			</div>
 		</div>
 	</div>

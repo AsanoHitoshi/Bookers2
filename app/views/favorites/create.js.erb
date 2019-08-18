@@ -1,0 +1,6 @@
+$(function(){
+  $(document).on('ajax:success', '.fav',function(e){
+    console.log(e);
+  $('.fav').html("<%= escape_javascript(render partial: 'favorites/fav_destroy', locals: {book: @book}) %>");
+})
+})

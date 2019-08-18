@@ -17,6 +17,8 @@
 /* for bootstrap*/
     @import "bootstrap-sprockets";
     @import "bootstrap";
+    @import "slick-theme";
+	@import "slick";
 
 /*for application*/
 *{
@@ -72,6 +74,11 @@ nav{
 }
 
 /*for users*/
+
+.noimage{
+	width: 100px;
+	height:100px;
+}
 
 .field{
 	margin:0 0 10px 0;

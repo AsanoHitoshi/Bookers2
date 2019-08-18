@@ -5,11 +5,14 @@ class BooksController < ApplicationController
 		@book = Book.new
 		@books = Book.all
 		@user = User.find(current_user.id)
+		@books = Book.all.order(id: "DESC")
 	end
 	def show
 		@user = User.find(current_user.id)
 		@newbook = Book.new
 		@book = Book.find(params[:id])
+		@book_comment = BookComment.new
+		@book_comments_show = BookComment.where(book_id: params[:id])
 	end
 	def edit
 		@book = Book.find(params[:id])
@@ -38,7 +41,8 @@ class BooksController < ApplicationController
 		@book.user_id = current_user.id
 		if @book.save
 			flash[:notice]="Book was successfully created"
-			redirect_to book_path(@book.id)
+			@books = Book.all
+			render 'create.js.erb'
 		else
 			flash[:notice]="error"
 			redirect_to books_path

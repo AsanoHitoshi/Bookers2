@@ -1,0 +1,10 @@
+<table class="table table-striped">
+	<thead>
+		<th>name</th>
+	</thead>
+	<%@book.favorites.each do |favorite|%>
+	<tbody>
+		<td><%=favorite.user.name%></td>
+	</tbody>
+	<%end%>
+</table>

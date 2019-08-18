@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
+  has_many :book_comments,  dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :follows, dependent: :destroy
   attachment :profile_image
 # nameが２〜２０文字、空欄でない、一意であること
   validates :name, length: {in:2..20}
@@ -18,6 +21,20 @@ class User < ApplicationRecord
  end
  def email_changed?
    false
+ end
+
+ def self.search(method,word)
+        if method == "forward_match"
+          @users = User.where("name LIKE?","#{word}%")
+        elsif method == "backward_match"
+          @users = User.where("name LIKE?","%#{word}")
+        elsif method == "perfect_match"
+          @users = User.where("#{word}")
+        elsif method == "partial_match"
+          @users = User.where("name LIKE?","%#{word}%")
+        else
+          @users = User.all
+        end
  end
 
 end

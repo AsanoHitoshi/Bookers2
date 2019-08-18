@@ -1,0 +1,27 @@
+<div class="books_index">
+	<div class="col-lg-8">
+		<h3 class="book-title">Books</h3>
+		<table class="table table-striped">
+				<thead>
+					<th>title</th>
+					<th>opinion</th>
+				</thead>
+			<% books.each do |book| %>
+			<% user = User.find(book.user_id)%>
+				<tbody>
+					<td>
+					<% if user.profile_image.present? %>
+						<%=link_to user_path(user) do attachment_image_tag  user, :profile_image end %>
+					<%else%>
+						<div class="img"></div>
+					<%end%>
+					</td>
+					<td>
+						<%= link_to book_path(book) do book.title  end%>
+					</td>
+					<td><%=book.body%></td>
+				</tbody>
+			<% end %>
+		</table>
+	</div>
+</div>

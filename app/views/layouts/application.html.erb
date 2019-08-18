@@ -4,9 +4,12 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
   </head>
 
   <body>
@@ -19,15 +22,15 @@
           <div class="nav_right">
             <ul>
               <%if user_signed_in?%>
-              <li class="nav_item"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-              <li class="nav_item"><%= link_to "Books", books_path %></li>
-              <li class="nav_item"><%= link_to "Users", users_path %></li>
-              <li class="nav_item"><%= link_to "Home",user_path(current_user.id) %></li>
+                <li class="nav_item"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+                <li class="nav_item"><%= link_to "Books", books_path %></li>
+                <li class="nav_item"><%= link_to "Users", users_path %></li>
+                <li class="nav_item"><%= link_to "Home",user_path(current_user.id) %></li>
               <%else%>
-              <li class="nav_item"><%= link_to "login",new_user_session_path %></li>
-              <li class="nav_item"><%= link_to "sign up",new_user_registration_path %></li>
-              <li class="nav_item"><%= link_to "About",home_about_path %></li>
-              <li class="nav_item"><%= link_to "Home",root_path %></li>
+                <li class="nav_item"><%= link_to "login",new_user_session_path %></li>
+                <li class="nav_item"><%= link_to "sign up",new_user_registration_path %></li>
+                <li class="nav_item"><%= link_to "About",home_about_path %></li>
+                <li class="nav_item"><%= link_to "Home",root_path %></li>
               <%end%>
             </ul>
           </div>
